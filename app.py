@@ -105,7 +105,7 @@ with tab2:
     # Scatter plot: Deaths vs CPI-Adjusted Cost (or Duration, or Year)
     fig_deaths = px.scatter(
         df,
-        x="Deaths",
+        x="CPI-Adjusted Cost",
         y="Deaths",
         color="Disaster",
         hover_data=["Name", "Year", "Disaster", "CPI-Adjusted Cost"],
