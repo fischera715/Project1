@@ -148,7 +148,7 @@ with tab2:
 
     st.write(
         "Tropical Cyclones dominate average losses, while other disaster "
-        "types contribute smaller but more frequent costs."
+        "types contribute smaller costs."
     )
 
     st.header("Cost Trends by Disaster Type")
@@ -182,6 +182,29 @@ with tab2:
     st.write(
         "This chart shows how the financial impact of a selected disaster type "
         "has evolved over time."
+    )
+
+    # Duration over time for selected disaster
+    duration_by_year = (
+        filtered_df.groupby("Year")["Duration"]
+        .mean()
+        .reset_index()
+    )
+    
+    fig_duration = px.line(
+        duration_by_year,
+        x="Year",
+        y="Duration",
+        markers=True,
+        title=f"Average Duration Over Time: {selected_disaster}",
+        labels={"Duration": "Average Duration (days)"}
+    )
+    
+    st.plotly_chart(fig_duration, use_container_width=True)
+    
+    st.write(
+        "This chart shows how the average duration of the selected disaster type "
+        "has changed over time."
     )
 
 # Duration Analysis
