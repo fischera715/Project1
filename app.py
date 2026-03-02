@@ -172,7 +172,7 @@ with tab4:
         Subset used: 1980–2024, all events ≥ $1 billion in damages. NOAA National Centers for Environmental Information. 
         Dataset. https://doi.org/10.25921/stkw-7w73. Accessed March 02, 2026
         
-        **Note** NOAA has archived this dataset and will no longer be updating it.
+        **Note:** NOAA has archived this dataset and will no longer be updating it.
         """
     )
 
@@ -187,10 +187,9 @@ with tab4:
     )
 
     st.subheader("Data Updating Process")
-
     st.write(
         """
-        NOAA has archived this datasest. There will be no additional data available to update the analysis.
+        The dataset is archived; no additional updates will be provided. Future analyses would require re-downloading new data releases if available.
         """
     )
 
