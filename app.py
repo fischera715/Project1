@@ -128,7 +128,34 @@ with tab2:
         "types contribute smaller but more frequent costs."
     )
 
+with tab3:
 
+    st.header("Disaster Duration vs Financial Impact")
+
+    st.write(
+        "This scatter plot explores whether longer disasters lead to higher costs. "
+        "A log scale is used to better visualize extreme outliers."
+    )
+
+    duration_df = df[df["Duration"] >= 0]
+
+    fig5 = px.scatter(
+        duration_df,
+        x="Duration",
+        y="CPI-Adjusted Cost",
+        color="Disaster",
+        hover_data=["Year"],
+        title="Duration vs CPI-Adjusted Cost",
+    )
+
+    fig5.update_yaxes(type="log")
+
+    st.plotly_chart(fig5, use_container_width=True)
+
+    st.write(
+        "The overall correlation between duration and cost is weak, suggesting that "
+        "longer events do not automatically translate to higher financial losses."
+    )
 
 
 
