@@ -15,3 +15,11 @@ if st.checkbox("Show Raw Data"):
     st.dataframe(df)
 
 st.write("Dataset loaded successfully.")
+
+df['Begin Date'] = pd.to_datetime(df['Begin Date'], format='%Y%m%d')
+df['End Date'] = pd.to_datetime(df['End Date'], format='%Y%m%d')
+
+df['Year'] = df['Begin Date'].dt.year
+
+df['Duration'] = (df['End Date'] - df['Begin Date']).dt.days
+df["CPI-Adjusted Cost"] = pd.to_numeric(df["CPI-Adjusted Cost"], errors="coerce")
