@@ -171,10 +171,10 @@ with tab3:
         duration_df,
         x="Duration",
         y="CPI-Adjusted Cost",
+        trendline="ols"
         color="Disaster",
         hover_data=["Year"],
-        title="Duration vs CPI-Adjusted Cost",
-        trendline="ols"
+        title="Duration vs CPI-Adjusted Cost"
     )
 
     fig5.update_yaxes(type="log")
