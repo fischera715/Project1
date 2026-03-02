@@ -50,7 +50,7 @@ with tab1:
         "Notice there is an increase in events in more recent years."
     )
     
-    st.header("CPI-Adjusted Cost vs. Cost")
+    st.header("CPI-Adjusted Cost vs. Unadjusted Cost")
 
     st.write(
         "This plot shows the correlation between CPI-adjusted cost and regular cost "
@@ -63,16 +63,22 @@ with tab1:
         y="CPI-Adjusted Cost",
         color="Disaster",
         trendline="ols",
+        trendline_scope="overall",
         hover_data=["Name", "Year", "Disaster"],
         title="CPI-Adjusted Cost vs Unadjusted Cost",
         labels={"Unadjusted Cost": "Unadjusted Cost (Millions USD)",
                     "CPI-Adjusted Cost": "CPI-Adjusted Cost (Millions USD)"}
         )
+    
     fig.update_yaxes(type="log")
     fig.update_xaxes(type="log")
     st.plotly_chart(fig, use_container_width=True)
 
-
+    st.write(
+        "The scatter plot comparing CPI-adjusted and unadjusted costs shows a very high coefficient of determination "
+        "(R² ≈ 0.9), indicating that adjusting for inflation preserves the relative scale of disaster costs over time. "
+        "All financial values in this dashboard are shown as CPI-adjusted to make them comparable across years."
+    )
     
     st.header("Total CPI-Adjusted Cost Per Year")
 
