@@ -76,7 +76,7 @@ with tab1:
 
     st.write(
         "The scatter plot comparing CPI-adjusted and unadjusted costs shows a very high coefficient of determination "
-        "(R² ≈ 0.9), indicating that adjusting for inflation preserves the relative scale of disaster costs over time. "
+        "(R² ≈ 0.95), indicating that adjusting for inflation preserves the relative scale of disaster costs over time. "
         "All financial values in this dashboard are shown as CPI-adjusted to make them comparable across years."
     )
     
@@ -101,7 +101,31 @@ st.write(
     )
 
 with tab2:
+    
+    # Aggregate total CPI-adjusted cost by disaster type
+    cost_by_disaster = df.groupby('Disaster')['CPI-Adjusted Cost'].sum().reset_index()
+    
+    # Sort descending by total cost so biggest disasters are first
+    cost_by_disaster = cost_by_disaster.sort_values(by='CPI-Adjusted Cost', ascending=False)
+    
+    # Bar chart
+    fig = px.bar(
+        cost_by_disaster,
+        x='Disaster',
+        y='CPI-Adjusted Cost',
+        text='CPI-Adjusted Cost',
+        hover_data={'Disaster': True, 'CPI-Adjusted Cost': ':.2f'},
+        title="Total CPI-Adjusted Cost by Disaster Type (1980-2024)",
+        labels={'CPI-Adjusted Cost':'Total Cost (Millions USD)', 'Disaster':'Disaster Type'},
+    )
+    
+    fig.update_traces(texttemplate='%{text:.0f}', textposition='outside')
+    fig.update_layout(xaxis_tickangle=-45, yaxis_title="Millions USD", uniformtext_minsize=8, uniformtext_mode='hide')
+    
+    # Show in Streamlit
+    st.plotly_chart(fig, use_container_width=True)
 
+    
     st.header("Cost Trends by Disaster Type")
 
     # Interactive filter
