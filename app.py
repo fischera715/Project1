@@ -4,7 +4,35 @@ import plotly.express as px
 
 st.set_page_config(page_title="US Disaster Analysis", layout="wide")
 
-st.title("US Billion-Dollar Disasters (1980–2024)")
+st.title("U.S. Billion-Dollar Weather & Climate Disasters (1980–2024)")
+
+st.write(
+    """
+    This dashboard explores U.S. weather and climate disasters that caused at least 
+    $1 billion in damages. True economic impact is reflected using inflation adjusted costs.
+    
+    The goal is to help analysts, actuaries, and policymakers understand trends, 
+    financial impacts, and disaster characteristics over time.
+    """
+)
+
+st.subheader("Key Analytical Questions")
+st.markdown(
+    """
+    - Has the frequency of billion-dollar disasters changed over time?
+    - How have total inflation-adjusted costs increased over time?
+    - Which disaster types account for the largest share of economic losses in the U.S.?
+    - Are certain disaster types becoming more financially dominant over time?
+    """
+)
+
+st.write(
+    """
+    Use the tabs above to explore trends, disaster-specific patterns, duration analysis, 
+    and the dataset itself. Interactive filters allow you to select disaster types and see 
+    how costs and durations vary over time.
+    """
+)
 
 # Load data
 df = pd.read_csv("events-US-1980-2024.csv", skiprows=2)
