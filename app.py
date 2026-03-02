@@ -167,15 +167,15 @@ with tab3:
 
     duration_df = df[df["Duration"] >= 0]
 
-fig5 = px.scatter(
-    duration_df,
-    x="Duration",
-    y="CPI-Adjusted Cost",
-    color="Disaster",
-    hover_data=["Year"],
-    title="Duration vs CPI-Adjusted Cost",
-    trendline="ols"
-)
+    fig5 = px.scatter(
+        duration_df,
+        x="Duration",
+        y="CPI-Adjusted Cost",
+        color="Disaster",
+        hover_data=["Year"],
+        title="Duration vs CPI-Adjusted Cost",
+        trendline="ols"
+    )
 
     fig5.update_yaxes(type="log")
 
