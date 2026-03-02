@@ -171,7 +171,7 @@ with tab3:
         duration_df,
         x="Duration",
         y="CPI-Adjusted Cost",
-        trendline="ols"
+        trendline="ols",
         color="Disaster",
         hover_data=["Year"],
         title="Duration vs CPI-Adjusted Cost"
