@@ -146,7 +146,7 @@ with tab3:
     )
 
     fig.update_layout(xaxis_tickangle=-45)
-    st.plotly_chart(fig, use_container_width=True
+    st.plotly_chart(fig, use_container_width=True)
     
     st.write(
         "This scatter plot explores whether longer disasters lead to higher costs. "
