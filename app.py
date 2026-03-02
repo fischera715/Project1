@@ -7,7 +7,7 @@ st.set_page_config(page_title="US Disaster Analysis", layout="wide")
 st.title("US Billion-Dollar Disasters (1980–2024)")
 
 # Load data
-df = pd.read_csv("events-US-1980-2024.csv")
+df = pd.read_csv("events-US-1980-2024.csv", skiprows=2)
 
 df.columns = df.columns.str.strip()
 
