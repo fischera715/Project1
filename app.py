@@ -132,8 +132,9 @@ with tab3:
 
     st.header("Disaster Duration vs Financial Impact")
 
-    st.header("Disaster Duration by Type")
-    
+    st.write(
+        "This box plot shows the durations of each specific disaster."
+        
     # Boxplot
     fig = px.box(
         df,
@@ -147,6 +148,10 @@ with tab3:
 
     fig.update_layout(xaxis_tickangle=-45)
     st.plotly_chart(fig, use_container_width=True)
+
+    st.write(
+        "The box plot shows that most disasters last less than 20 days, with the "
+        "exception of Droughts, Wildfires, and Floods."
     
     st.write(
         "This scatter plot explores whether longer disasters lead to higher costs. "
