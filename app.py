@@ -101,19 +101,6 @@ st.write(
     )
 
 with tab2:
-    cost_by_disaster = df.groupby("Disaster").agg({"CPI-Adjusted Cost":"sum","Name":"count"}).reset_index()
-    cost_by_disaster.rename(columns={"Name":"Frequency"}, inplace=True)
-    
-    fig = px.scatter(
-        cost_by_disaster,
-        x="Frequency",
-        y="CPI-Adjusted Cost",
-        text="Disaster",
-        trendline="ols",
-        title="Total CPI-Adjusted Cost vs Frequency by Disaster Type"
-    )
-    st.plotly_chart(fig, use_container_width=True)
-
     st.header("Cost Trends by Disaster Type")
 
     # Interactive filter
