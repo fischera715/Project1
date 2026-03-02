@@ -158,7 +158,50 @@ with tab3:
     )
 
 
+with tab4:
 
+    st.header("Data Source & Sustainability")
+
+    st.subheader("Original Data Source")
+
+    st.write(
+        """
+        **Dataset:** U.S. Billion-Dollar Weather and Climate Disasters  
+        **Source:** NOAA National Centers for Environmental Information (NCEI)  
+        **Citation:** Smith, Adam B. (2020). U.S. Billion-dollar Weather and Climate Disasters, 1980 - present (NCEI Accession 0209268). 
+        Subset used: 1980–2024, all events ≥ $1 billion in damages. NOAA National Centers for Environmental Information. 
+        Dataset. https://doi.org/10.25921/stkw-7w73. Accessed March 02, 2026
+        
+        **Note** NOAA has archived this dataset and will no longer be updating it.
+        """
+    )
+
+    st.subheader("Dataset Description")
+
+    st.write(
+        """
+        This dataset contains U.S. weather and climate disasters that caused 
+        at least $1 billion in damages. The costs have been adjusted for inflation. Key variables 
+        include disaster type, start and end dates, duration, and CPI-adjusted costs.
+        """
+    )
+
+    st.subheader("Data Updating Process")
+
+    st.write(
+        """
+        NOAA has archived this datasest. There will be no additional data available to update the analysis.
+        """
+    )
+
+    st.subheader("License & Use")
+
+    st.write(
+        """
+        The dataset is publicly available through NOAA and is intended for 
+        research, educational, and public policy analysis.
+        """
+    )
 
 
 
