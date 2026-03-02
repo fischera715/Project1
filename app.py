@@ -93,12 +93,12 @@ with tab1:
     )
 
     st.plotly_chart(fig2, use_container_width=True)
-
-st.write(
-    "While disaster frequency has increased over time, total costs exhibit extreme spikes "
-    "in certain years, driven by catastrophic events such as major hurricanes. "
-    "This suggests that the number of disasters does not necessarily correlate with the total cost."
-    )
+    
+    st.write(
+        "While disaster frequency has increased over time, total costs exhibit extreme spikes "
+        "in certain years, driven by catastrophic events such as major hurricanes. "
+        "This suggests that the number of disasters does not necessarily correlate with the total cost."
+        )
 
 # Disaster Type Analysis
 with tab2:
@@ -204,7 +204,9 @@ with tab2:
     
     st.write(
         "This chart shows how the average duration of the selected disaster type "
-        "has changed over time."
+        "has changed over time. For example, Drought events in recent years tend to last longer than in the past, "
+        "Freeze events are shorter compared to previous years, and Severe Storms are relatively consistent, "
+        "with most lasting around 4 days, except for the 1997 event that lasted 47 days."
     )
 
 # Duration Analysis
