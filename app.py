@@ -115,12 +115,18 @@ with tab2:
         trendline_scope="overall"
     )
     
-    # Optional: log scale for costs or deaths if extreme outliers dominate
     fig_deaths.update_xaxes(type="log")
     fig_deaths.update_yaxes(type="log")
     
     st.plotly_chart(fig_deaths, use_container_width=True)
-    
+
+    st.write(
+        "This scatter plot shows how financial impact relates to human impact. "
+        "While not all costly disasters are deadly, there is a moderate positive "
+        "correlation (R² ≈ 0.35) indicating that higher-cost events often result "
+        "in more fatalities."
+    )
+        
     st.header("Cost Trends by Disaster Type")
 
     # Interactive filter
