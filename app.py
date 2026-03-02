@@ -100,9 +100,9 @@ st.write(
     "This suggests that the number of disasters does not necessarily correlate with the total cost."
     )
 
+# Disaster Type Analysis
 with tab2:
-
-    # Scatter plot: Deaths vs CPI-Adjusted Cost (or Duration, or Year)
+    # Scatter plot: Deaths vs CPI-Adjusted Cost
     fig_deaths = px.scatter(
         df,
         x="CPI-Adjusted Cost",
@@ -126,7 +126,31 @@ with tab2:
         "correlation (R² ≈ 0.35) indicating that higher-cost events often result "
         "in more fatalities."
     )
-        
+    
+    # Average cost bar chart
+    st.subheader("Average Cost per Disaster Type")
+
+    avg_cost = (
+        df.groupby("Disaster")["CPI-Adjusted Cost"]
+        .mean()
+        .reset_index()
+        .sort_values(by="CPI-Adjusted Cost", ascending=False)
+    )
+
+    fig4 = px.bar(
+        avg_cost,
+        x="Disaster",
+        y="CPI-Adjusted Cost",
+        title="Average CPI-Adjusted Cost per Disaster Type"
+    )
+
+    st.plotly_chart(fig4, use_container_width=True)
+
+    st.write(
+        "Tropical Cyclones dominate average losses, while other disaster "
+        "types contribute smaller but more frequent costs."
+    )
+
     st.header("Cost Trends by Disaster Type")
 
     # Interactive filter
@@ -160,32 +184,8 @@ with tab2:
         "has evolved over time."
     )
 
-    # Average cost bar chart
-    st.subheader("Average Cost per Disaster Type")
-
-    avg_cost = (
-        df.groupby("Disaster")["CPI-Adjusted Cost"]
-        .mean()
-        .reset_index()
-        .sort_values(by="CPI-Adjusted Cost", ascending=False)
-    )
-
-    fig4 = px.bar(
-        avg_cost,
-        x="Disaster",
-        y="CPI-Adjusted Cost",
-        title="Average CPI-Adjusted Cost per Disaster Type"
-    )
-
-    st.plotly_chart(fig4, use_container_width=True)
-
-    st.write(
-        "Tropical Cyclones dominate average losses, while other disaster "
-        "types contribute smaller but more frequent costs."
-    )
-
+# Duration Analysis
 with tab3:
-
     st.header("Duration of Disasters by Type")
 
     st.write(
