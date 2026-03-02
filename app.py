@@ -58,19 +58,19 @@ with tab1:
     )
 
         fig = px.scatter(
-    df,
-    x="Unadjusted Cost",
-    y="CPI-Adjusted Cost",
-    color="Disaster",
-    trendline="ols",
-    hover_data=["Name", "Year", "Disaster"],
-    title="CPI-Adjusted Cost vs Unadjusted Cost",
-    labels={"Unadjusted Cost": "Unadjusted Cost (Millions USD)",
-            "CPI-Adjusted Cost": "CPI-Adjusted Cost (Millions USD)"}
-)
-fig.update_yaxes(type="log")
-fig.update_xaxes(type="log")
-st.plotly_chart(fig, use_container_width=True)
+            df,
+            x="Unadjusted Cost",
+            y="CPI-Adjusted Cost",
+            color="Disaster",
+            trendline="ols",
+            hover_data=["Name", "Year", "Disaster"],
+            title="CPI-Adjusted Cost vs Unadjusted Cost",
+            labels={"Unadjusted Cost": "Unadjusted Cost (Millions USD)",
+                    "CPI-Adjusted Cost": "CPI-Adjusted Cost (Millions USD)"}
+        )
+        fig.update_yaxes(type="log")
+        fig.update_xaxes(type="log")
+        st.plotly_chart(fig, use_container_width=True)
 
 
     
