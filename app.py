@@ -105,13 +105,14 @@ with tab2:
     # Scatter plot: Deaths vs CPI-Adjusted Cost (or Duration, or Year)
     fig_deaths = px.scatter(
         df,
-        x="Duration",   # or "Duration" or "Year"
+        x="Year",   # or "Duration" or "Year"
         y="Deaths",
         color="Disaster",
         hover_data=["Name", "Year", "Disaster", "CPI-Adjusted Cost"],
         title="Deaths vs CPI-Adjusted Cost by Disaster Type",
         labels={"CPI-Adjusted Cost": "CPI-Adjusted Cost (Millions USD)", "Deaths": "Number of Deaths"},
-        trendline="ols"  # optional, if you want a regression line
+        trendline="ols",
+        trendline_scope="overall"
     )
     
     # Optional: log scale for costs or deaths if extreme outliers dominate
