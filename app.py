@@ -101,31 +101,19 @@ st.write(
     )
 
 with tab2:
+    cost_by_disaster = df.groupby("Disaster").agg({"CPI-Adjusted Cost":"sum","Name":"count"}).reset_index()
+    cost_by_disaster.rename(columns={"Name":"Frequency"}, inplace=True)
     
-    # Aggregate total CPI-adjusted cost by disaster type
-    cost_by_disaster = df.groupby('Disaster')['CPI-Adjusted Cost'].sum().reset_index()
-    
-    # Sort descending by total cost so biggest disasters are first
-    cost_by_disaster = cost_by_disaster.sort_values(by='CPI-Adjusted Cost', ascending=False)
-    
-    # Bar chart
-    fig = px.bar(
+    fig = px.scatter(
         cost_by_disaster,
-        x='Disaster',
-        y='CPI-Adjusted Cost',
-        text='CPI-Adjusted Cost',
-        hover_data={'Disaster': True, 'CPI-Adjusted Cost': ':.2f'},
-        title="Total CPI-Adjusted Cost by Disaster Type (1980-2024)",
-        labels={'CPI-Adjusted Cost':'Total Cost (Millions USD)', 'Disaster':'Disaster Type'},
+        x="Frequency",
+        y="CPI-Adjusted Cost",
+        text="Disaster",
+        trendline="ols",
+        title="Total CPI-Adjusted Cost vs Frequency by Disaster Type"
     )
-    
-    fig.update_traces(texttemplate='%{text:.0f}', textposition='outside')
-    fig.update_layout(xaxis_tickangle=-45, yaxis_title="Millions USD", uniformtext_minsize=8, uniformtext_mode='hide')
-    
-    # Show in Streamlit
     st.plotly_chart(fig, use_container_width=True)
 
-    
     st.header("Cost Trends by Disaster Type")
 
     # Interactive filter
