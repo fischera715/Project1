@@ -21,6 +21,7 @@ tab1, tab2, tab3, tab4 = st.tabs([
     "Data Source"
 ])
 
+# Cleaning data
 df['Begin Date'] = pd.to_datetime(df['Begin Date'], format='%Y%m%d')
 df['End Date'] = pd.to_datetime(df['End Date'], format='%Y%m%d')
 
@@ -29,6 +30,7 @@ df['Year'] = df['Begin Date'].dt.year
 df['Duration'] = (df['End Date'] - df['Begin Date']).dt.days
 df["CPI-Adjusted Cost"] = pd.to_numeric(df["CPI-Adjusted Cost"], errors="coerce")
 
+# Begin overview of trends
 with tab1:
     st.header("Trend in Number of Billion-Dollar Disasters")
     
@@ -45,7 +47,7 @@ with tab1:
     
     st.write(
         "This chart shows the annual frequency of billion-dollar disasters. "
-        "Notice the increase in event counts in more recent years."
+        "Notice there is an increase in events in more recent years."
     )
     
     
@@ -63,9 +65,10 @@ with tab1:
 
     st.plotly_chart(fig2, use_container_width=True)
 
-    st.write(
-        "While disaster frequency has increased, total costs show extreme spikes "
-        "in certain years driven by catastrophic events such as major hurricanes."
+st.write(
+    "While disaster frequency has increased over time, total costs exhibit extreme spikes "
+    "in certain years, driven by catastrophic events such as major hurricanes. "
+    "This suggests that the number of disasters does not necessarily correlate with the total cost."
     )
 
 with tab2:
@@ -79,7 +82,6 @@ with tab2:
         disaster_list
     )
 
-    # Filter data
     filtered_df = df[df["Disaster"] == selected_disaster]
 
     # Cost over time for selected disaster
@@ -130,10 +132,11 @@ with tab2:
 
 with tab3:
 
-    st.header("Disaster Duration vs Financial Impact")
+    st.header("Duration of Disasters by Type")
 
     st.write(
-        "This box plot shows the durations of each specific disaster."
+        "This box plot shows the durations of each specific disaster, "
+         "highlighting how long different kinds of events typically last and the variability across events."
     )
     
     # Boxplot
@@ -154,7 +157,9 @@ with tab3:
         "The box plot shows that most disasters last less than 20 days, with the "
         "exception of Droughts, Wildfires, and Floods."
     )
-    
+
+    st.header("Disaster Duration vs Financial Impact")
+
     st.write(
         "This scatter plot explores whether longer disasters lead to higher costs. "
         "A log scale is used to better visualize extreme outliers."
@@ -162,14 +167,15 @@ with tab3:
 
     duration_df = df[df["Duration"] >= 0]
 
-    fig5 = px.scatter(
-        duration_df,
-        x="Duration",
-        y="CPI-Adjusted Cost",
-        color="Disaster",
-        hover_data=["Year"],
-        title="Duration vs CPI-Adjusted Cost",
-    )
+fig5 = px.scatter(
+    duration_df,
+    x="Duration",
+    y="CPI-Adjusted Cost",
+    color="Disaster",
+    hover_data=["Year"],
+    title="Duration vs CPI-Adjusted Cost",
+    trendline="ols"
+)
 
     fig5.update_yaxes(type="log")
 
