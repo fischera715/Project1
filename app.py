@@ -6,13 +6,6 @@ st.set_page_config(page_title="US Disaster Analysis", layout="wide")
 
 st.title("US Billion-Dollar Disasters (1980–2024)")
 
-tab1, tab2, tab3, tab4 = st.tabs([
-    "Overview Trends",
-    "By Disaster Type",
-    "Duration Analysis",
-    "Data Source"
-])
-
 # Load data
 df = pd.read_csv("events-US-1980-2024.csv", skiprows=2)
 
@@ -20,6 +13,13 @@ df.columns = df.columns.str.strip()
 
 if st.checkbox("Show Data"):
     st.dataframe(df)
+
+tab1, tab2, tab3, tab4 = st.tabs([
+    "Overview Trends",
+    "By Disaster Type",
+    "Duration Analysis",
+    "Data Source"
+])
 
 df['Begin Date'] = pd.to_datetime(df['Begin Date'], format='%Y%m%d')
 df['End Date'] = pd.to_datetime(df['End Date'], format='%Y%m%d')
