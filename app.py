@@ -132,6 +132,22 @@ with tab3:
 
     st.header("Disaster Duration vs Financial Impact")
 
+    st.header("Disaster Duration by Type")
+    
+    # Boxplot
+    fig = px.box(
+        df,
+        x='Disaster',
+        y='Duration',
+        points="all",
+        color='Disaster',
+        title="Distribution of Disaster Duration by Type",
+        labels={'Duration':'Duration (days)', 'Disaster':'Disaster Type'}
+    )
+
+    fig.update_layout(xaxis_tickangle=-45)
+    st.plotly_chart(fig, use_container_width=True
+    
     st.write(
         "This scatter plot explores whether longer disasters lead to higher costs. "
         "A log scale is used to better visualize extreme outliers."
