@@ -68,7 +68,65 @@ with tab1:
         "in certain years driven by catastrophic events such as major hurricanes."
     )
 
+with tab2:
 
+    st.header("Cost Trends by Disaster Type")
+
+    # Interactive filter
+    disaster_list = sorted(df["Disaster"].unique())
+    selected_disaster = st.selectbox(
+        "Select a Disaster Type:",
+        disaster_list
+    )
+
+    # Filter data
+    filtered_df = df[df["Disaster"] == selected_disaster]
+
+    # Cost over time for selected disaster
+    cost_by_year = (
+        filtered_df.groupby("Year")["CPI-Adjusted Cost"]
+        .sum()
+        .reset_index()
+    )
+
+    fig3 = px.line(
+        cost_by_year,
+        x="Year",
+        y="CPI-Adjusted Cost",
+        markers=True,
+        title=f"CPI-Adjusted Cost Over Time: {selected_disaster}"
+    )
+
+    st.plotly_chart(fig3, use_container_width=True)
+
+    st.write(
+        "This chart shows how the financial impact of a selected disaster type "
+        "has evolved over time."
+    )
+
+    # Average cost bar chart
+    st.subheader("Average Cost per Disaster Type")
+
+    avg_cost = (
+        df.groupby("Disaster")["CPI-Adjusted Cost"]
+        .mean()
+        .reset_index()
+        .sort_values(by="CPI-Adjusted Cost", ascending=False)
+    )
+
+    fig4 = px.bar(
+        avg_cost,
+        x="Disaster",
+        y="CPI-Adjusted Cost",
+        title="Average CPI-Adjusted Cost per Disaster Type"
+    )
+
+    st.plotly_chart(fig4, use_container_width=True)
+
+    st.write(
+        "Tropical Cyclones dominate average losses, while other disaster "
+        "types contribute smaller but more frequent costs."
+    )
 
 
 
